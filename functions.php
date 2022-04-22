@@ -24,10 +24,11 @@ function theme_dobroVdii_scripts() {
     
     //wp_enqueue_script( 'my-js', get_template_directory_uri() . '/script.js' );
 
-	wp_deregister_script('jquery');
-	wp_enqueue_script('jquery'
+	wp_deregister_script('jquery-core');
+	wp_register_script('jquery-core'
     , 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'
     , array(), null, true);
+    wp_enqueue_script('jquery');
 
     // SLIDER
     wp_enqueue_script( 'slick-js'
