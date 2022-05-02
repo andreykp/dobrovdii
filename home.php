@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/*
+Template name: home
+*/
+get_header(); ?>
 
 <main>
     <section class="hero section">
@@ -33,17 +37,39 @@
 
 
         <ul class="events-list list">
+
+        <?php
+        // category Благодійні акції
+        $cat_id = 5;
+
+        $cat_id 
+            = get_cat_ID('Благодійні акції');
+    $args = array(
+        'posts_per_page' => 5,
+        'cat' => $cat_id,
+    );
+    $posts = get_posts($args);
+    foreach ($posts as $post) :
+        ?>
             <li class="item card">
+
                 <div class="card-thumb">
-                    <img src="<?= get_template_directory_uri() ?>//images/event-1.jpg" alt="Фото акції" width="260" height="260" class="image">
+                <?php 
+                echo the_post_thumbnail(array(260,260));
+                ?>
                 </div>
                 <div class="card-content">
-                    <h3>Благодійна акція «Об’єднані перемогою»
-                    жовтень 2016</h3>
-                    <p class="info">Збір коштів на підтримку в лікуванні маленького Андрійка.</p>
-                    <a href="#" class="details-btn">Деталі</a>
+                    <h3><?= the_title() ?> </h3>
+                    <p class="info"><?php the_excerpt('more text'); ?></p>
+                    <a href="<?php the_permalink();?>" class="details-btn">Деталі</a>
                 </div>
+
             </li>
+    
+
+        <?php 
+    endforeach;
+        ?>
 
         <li class="item card">
             <div class="card-thumb">
@@ -112,7 +138,41 @@
         <h2 id="news">Новини</h2>
         <h3 class="subtitle">Ми систематично публікуємо новини на сторінках соціальних мереж <a href="https://www.facebook.com/diinadobro" class="details">тут</a></h3>
     <div uk-slider>     
-    <ul class="events-list list uk-slider-items">
+    <ul class="events-list list">
+
+    <?php
+        $cat_id = 2;
+
+        $cat_id 
+            = get_cat_ID('news');
+    $args = array(
+        'posts_per_page' => 5,
+        'cat' => $cat_id,
+    );
+    $posts = get_posts($args);
+    foreach ($posts as $post) :
+        ?>
+            <li class="item card">
+
+                <div class="card-thumb">
+                <?php 
+                echo the_post_thumbnail(array(260,260));
+                ?>
+                </div>
+                <div class="card-content">
+                    <p class="news-date"><?= get_the_date('d.m.Y') ?></p>
+                    <h3><?= the_title() ?> </h3>
+                    <p class="info"><?php the_excerpt('more text'); ?></p>
+                    <a href="<?php the_permalink();?>" class="details-btn">Деталі</a>
+                </div>
+
+            </li>
+    
+
+        <?php 
+    endforeach;
+        ?>
+
         <li class="item card">
             <div class="card-thumb">
                 <img src="<?= get_template_directory_uri() ?>/images/news-01.jpg" alt="Фото акції" width="260" height="260" class="image">
